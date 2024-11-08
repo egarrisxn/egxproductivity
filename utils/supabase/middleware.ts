@@ -2,12 +2,15 @@ import { createServerClient } from "@supabase/ssr";
 import { type NextRequest, NextResponse } from "next/server";
 
 export const updateSession = async (request: NextRequest) => {
-  // Create an unmodified response
-  let response = NextResponse.next({
-    request: {
-      headers: request.headers,
-    },
+  let supabaseResponse = NextResponse.next({
+    request,
   });
+
+  // let response = NextResponse.next({
+  //   request: {
+  //     headers: request.headers,
+  //   },
+  // });
 
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -18,18 +21,18 @@ export const updateSession = async (request: NextRequest) => {
           return request.cookies.getAll();
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value),
+          cookiesToSet.forEach(({ name, value, options }) =>
+            request.cookies.set(name, value)
           );
-          response = NextResponse.next({
+          supabaseResponse = NextResponse.next({
             request,
           });
           cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options),
+            supabaseResponse.cookies.set(name, value, options)
           );
         },
       },
-    },
+    }
   );
 
   // This will refresh session if expired - required for Server Components
@@ -38,12 +41,12 @@ export const updateSession = async (request: NextRequest) => {
 
   // protected routes
   if (request.nextUrl.pathname.startsWith("/protected") && user.error) {
-    return NextResponse.redirect(new URL("/sign-in", request.url));
+    return NextResponse.redirect(new URL("/login", request.url));
   }
 
   if (request.nextUrl.pathname === "/" && !user.error) {
     return NextResponse.redirect(new URL("/protected", request.url));
   }
 
-  return response;
+  return supabaseResponse;
 };

@@ -1,6 +1,6 @@
 "use client";
 import { EventItem } from "./event-item";
-import type { EventListProps } from "@/lib/interface";
+import type { EventListProps } from "@/lib/types";
 
 export function EventList({
   events,

@@ -15,7 +15,7 @@ import { format } from "date-fns";
 import { getEvents, deleteEvent } from "@/app/actions";
 import { EventForm } from "./event-form";
 import { EventList } from "./event-list";
-import type { Event } from "@/lib/interface";
+import type { Event } from "@/lib/types";
 
 export default function EventCalendar() {
   const [date, setDate] = useState<Date>(new Date());

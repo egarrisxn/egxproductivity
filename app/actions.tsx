@@ -4,9 +4,25 @@ import { createClient } from "@/utils/supabase/server";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import type { Todo, Note, Event } from "@/lib/interface";
+import type { Todo, Note, Event } from "@/lib/types";
 
 //! TODOS
+
+export async function fetchTodos(): Promise<Todo[]> {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const { data, error } = await supabase.from("todos").select("*");
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data || [];
+}
 
 export async function addTodo(formData: FormData) {
   const supabase = await createClient();
@@ -272,7 +288,26 @@ export async function deleteEvent(id: number) {
 
 //! AUTHENTICATION
 
-export async function signUpAction(formData: FormData) {
+export async function login(formData: FormData) {
+  const email = formData.get("email") as string;
+  const password = formData.get("password") as string;
+  const supabase = await createClient();
+
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
+    return encodedRedirect("error", "/login", error.message);
+  }
+
+  //! See if this is necessary or not
+  revalidatePath("/", "layout");
+  return redirect("/protected");
+}
+
+export async function signup(formData: FormData) {
   const email = formData.get("email")?.toString();
   const password = formData.get("password")?.toString();
   const supabase = await createClient();
@@ -302,24 +337,7 @@ export async function signUpAction(formData: FormData) {
   }
 }
 
-export async function signInAction(formData: FormData) {
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
-  const supabase = await createClient();
-
-  const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  });
-
-  if (error) {
-    return encodedRedirect("error", "/sign-in", error.message);
-  }
-
-  return redirect("/protected");
-}
-
-export async function forgotPasswordAction(formData: FormData) {
+export async function forgotPassword(formData: FormData) {
   const email = formData.get("email")?.toString();
   const supabase = await createClient();
   const origin = (await headers()).get("origin");
@@ -353,7 +371,7 @@ export async function forgotPasswordAction(formData: FormData) {
   );
 }
 
-export async function resetPasswordAction(formData: FormData) {
+export async function resetPassword(formData: FormData) {
   const supabase = await createClient();
 
   const password = formData.get("password") as string;
@@ -390,8 +408,8 @@ export async function resetPasswordAction(formData: FormData) {
   encodedRedirect("success", "/protected/reset-password", "Password updated");
 }
 
-export const signOutAction = async () => {
+export async function signout() {
   const supabase = await createClient();
   await supabase.auth.signOut();
-  return redirect("/sign-in");
-};
+  return redirect("/login");
+}

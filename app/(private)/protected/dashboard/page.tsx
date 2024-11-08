@@ -1,11 +1,12 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { InfoIcon, List, Calendar, Files } from "lucide-react";
+import { List, Calendar, Files } from "lucide-react";
+import PrivateHeader from "@/components/private-header";
 import TodoList from "@/components/todos/todo-list";
 import NoteList from "@/components/notes/note-list";
 import CalendarView from "@/components/calendar/calendar-view";
 
-export default async function ProtectedPage() {
+export default async function DashboardPage() {
   const supabase = await createClient();
 
   const {
@@ -13,28 +14,14 @@ export default async function ProtectedPage() {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    return redirect("/sign-in");
+    return redirect("/login");
   }
 
   return (
     <div className="flex flex-col gap-8">
       <section className="w-full">
-        <div className="bg-accent text-sm p-3 sm:px-5 text-foreground flex gap-3 items-center">
-          <InfoIcon size="16" strokeWidth={2} />
-          This is a protected page that you can only see as an authenticated
-          user
-        </div>
+        <PrivateHeader />
       </section>
-
-      {/* <section className="p-2 max-w-2xl">
-            <div className="flex flex-col border rounded-lg shadow-lg p-4 gap-4">
-              <h2 className="font-bold text-2xl">Your user details</h2>
-              <pre className="text-xs font-mono p-3 rounded border max-h-32 overflow-auto">
-                {JSON.stringify(user, null, 2)}
-              </pre>
-            </div>
-          </section> */}
-
       <div className="flex flex-col lg:flex-row mx-auto gap-4">
         <div className="flex flex-col sm:min-w-96">
           <section className="p-2 max-w-2xl">

@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Edit, Trash2 } from "lucide-react";
 import { format, parse } from "date-fns";
-import type { EventItemProps } from "@/lib/interface";
+import type { EventItemProps } from "@/lib/types";
 
 export function EventItem({ event, onEdit, onDelete }: EventItemProps) {
   const formatEventTime = (time: string) => {

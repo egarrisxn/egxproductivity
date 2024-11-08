@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { editTodo } from "@/app/actions";
 import { Input } from "@/components/ui/input";
-import type { Todo } from "@/lib/interface";
+import type { Todo } from "@/lib/types";
 
 export default function TodoData({ todo }: { todo: Todo }) {
   const [description, setDescription] = useState(todo.task);

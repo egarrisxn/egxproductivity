@@ -15,7 +15,7 @@ import { format } from "date-fns";
 import { getEvents, deleteEvent } from "@/app/actions";
 import { EventForm } from "./event-form";
 import { EventList } from "./event-list";
-import type { Event } from "@/lib/interface";
+import type { Event } from "@/lib/types";
 
 export default function CalendarView() {
   const [date, setDate] = useState<Date>(new Date());
@@ -23,7 +23,7 @@ export default function CalendarView() {
   const [isLoading, setIsLoading] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<Event | undefined>(
-    undefined
+    undefined,
   );
 
   const fetchEvents = useCallback(async (selectedDate: Date) => {

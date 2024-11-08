@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { editNote } from "@/app/actions";
 import { Input } from "@/components/ui/input";
-import type { Note } from "@/lib/interface";
+import type { Note } from "@/lib/types";
 
 export default function NoteData({ note }: { note: Note }) {
   const [description, setDescription] = useState(note.thought);

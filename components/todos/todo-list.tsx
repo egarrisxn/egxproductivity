@@ -1,36 +1,22 @@
-import { createClient } from "@/utils/supabase/server";
+import { fetchTodos } from "@/app/actions";
 import Todo from "./todo";
 import AddTodo from "./add-todo";
 import ClearActions from "@/components/todos/clear-actions";
 
 export default async function TodoList() {
-  const supabase = await createClient();
-
-  const { data: todos, error } = await supabase.from("todos").select("*");
-
-  if (error) {
-    throw new Error(error.message);
-  }
+  const todos = await fetchTodos();
 
   return (
     <div className="flex-1 overflow-auto">
       <div className="flex flex-col">
         {todos &&
           todos
-            .filter((todo) => {
-              return todo.is_complete == false;
-            })
-            .map((todo) => {
-              return <Todo key={todo.id} todo={todo} />;
-            })}
+            .filter((todo) => !todo.is_complete)
+            .map((todo) => <Todo key={todo.id} todo={todo} />)}
         {todos &&
           todos
-            .filter((todo) => {
-              return todo.is_complete;
-            })
-            .map((todo) => {
-              return <Todo key={todo.id} todo={todo} />;
-            })}
+            .filter((todo) => todo.is_complete)
+            .map((todo) => <Todo key={todo.id} todo={todo} />)}
         <AddTodo />
       </div>
       <ClearActions />

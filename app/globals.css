@@ -67,3 +67,27 @@
     @apply bg-background text-foreground;
   }
 }
+
+.avatar {
+  border-radius: 5px;
+  overflow: hidden;
+  max-width: 100%;
+}
+.avatar.image {
+  object-fit: cover;
+}
+.avatar.no-image {
+  background-color: #333;
+  border: 1px solid rgb(200, 200, 200);
+  border-radius: 5px;
+}
+.avatarPlaceholder {
+  border: 1px solid #333;
+  border-radius: 5px;
+  width: 35px;
+  height: 35px;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

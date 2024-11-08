@@ -31,7 +31,7 @@ export function EventForm({
             title,
             description,
             time,
-            selectedDate.toISOString().split("T")[0]
+            selectedDate.toISOString().split("T")[0],
           );
         }
         onEventSaved();

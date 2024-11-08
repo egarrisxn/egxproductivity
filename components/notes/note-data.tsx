@@ -7,7 +7,7 @@ import type { Note } from "@/lib/interface";
 export default function NoteData({ note }: { note: Note }) {
   const [description, setDescription] = useState(note.thought);
   const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(
-    null
+    null,
   );
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function NoteData({ note }: { note: Note }) {
     setTypingTimeout(
       setTimeout(async () => {
         await editNote({ ...note, thought: e.target.value });
-      }, 2000)
+      }, 2000),
     );
   };
 

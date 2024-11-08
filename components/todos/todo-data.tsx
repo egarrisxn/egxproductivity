@@ -7,7 +7,7 @@ import type { Todo } from "@/lib/interface";
 export default function TodoData({ todo }: { todo: Todo }) {
   const [description, setDescription] = useState(todo.task);
   const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(
-    null
+    null,
   );
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export default function TodoData({ todo }: { todo: Todo }) {
     setTypingTimeout(
       setTimeout(async () => {
         await editTodo({ ...todo, task: e.target.value });
-      }, 2000)
+      }, 2000),
     );
   };
 

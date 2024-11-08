@@ -201,7 +201,7 @@ export async function addEvent(
   title: string,
   description: string,
   time: string,
-  date: string
+  date: string,
 ) {
   const supabase = await createClient();
 
@@ -226,7 +226,7 @@ export async function updateEvent(
   id: number,
   title: string,
   description: string,
-  time: string
+  time: string,
 ) {
   const supabase = await createClient();
 
@@ -297,7 +297,7 @@ export async function signUpAction(formData: FormData) {
     return encodedRedirect(
       "success",
       "/sign-up",
-      "Thanks for signing up! Please check your email for a verification link."
+      "Thanks for signing up! Please check your email for a verification link.",
     );
   }
 }
@@ -338,7 +338,7 @@ export async function forgotPasswordAction(formData: FormData) {
     return encodedRedirect(
       "error",
       "/forgot-password",
-      "Could not reset password"
+      "Could not reset password",
     );
   }
 
@@ -349,7 +349,7 @@ export async function forgotPasswordAction(formData: FormData) {
   return encodedRedirect(
     "success",
     "/forgot-password",
-    "Check your email for a link to reset your password."
+    "Check your email for a link to reset your password.",
   );
 }
 
@@ -363,7 +363,7 @@ export async function resetPasswordAction(formData: FormData) {
     encodedRedirect(
       "error",
       "/protected/reset-password",
-      "Password and confirm password are required"
+      "Password and confirm password are required",
     );
   }
 
@@ -371,7 +371,7 @@ export async function resetPasswordAction(formData: FormData) {
     encodedRedirect(
       "error",
       "/protected/reset-password",
-      "Passwords do not match"
+      "Passwords do not match",
     );
   }
 
@@ -383,7 +383,7 @@ export async function resetPasswordAction(formData: FormData) {
     encodedRedirect(
       "error",
       "/protected/reset-password",
-      "Password update failed"
+      "Password update failed",
     );
   }
 

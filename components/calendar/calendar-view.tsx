@@ -72,7 +72,6 @@ export default function CalendarView() {
             mode="single"
             selected={date}
             onSelect={(newDate) => newDate && setDate(newDate)}
-            className="x"
           />
         </Card>
 

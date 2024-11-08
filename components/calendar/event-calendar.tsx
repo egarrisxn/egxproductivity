@@ -23,7 +23,7 @@ export default function EventCalendar() {
   const [isLoading, setIsLoading] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedEvent, setSelectedEvent] = useState<Event | undefined>(
-    undefined
+    undefined,
   );
 
   const fetchEvents = useCallback(async (selectedDate: Date) => {

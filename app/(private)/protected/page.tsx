@@ -27,12 +27,6 @@ export default async function ProtectedPage() {
           </pre>
         </div>
       </section>
-      <section className="p-2 w-full">
-        <div className="flex flex-col gap-4 items-center justify-center">
-          <Link href="/protected/dashboard">Dashboard</Link>
-          <Link href="/protected/account">Account</Link>
-        </div>
-      </section>
     </div>
   );
 }

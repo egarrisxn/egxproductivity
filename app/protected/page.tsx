@@ -1,10 +1,8 @@
 import { createClient } from "@/utils/supabase/server";
-import { Calendar, InfoIcon } from "lucide-react";
 import { redirect } from "next/navigation";
-import CheckCircleIcon from "@/components/icons/check-circle";
-import Todos from "@/components/todos/todos";
-import ClearActions from "@/components/todos/clear-actions";
-import Notes from "@/components/notes/notes";
+import { InfoIcon, List, Calendar, Files } from "lucide-react";
+import TodoList from "@/components/todos/todo-list";
+import NoteList from "@/components/notes/note-list";
 import CalendarView from "@/components/calendar/calendar-view";
 
 export default async function ProtectedPage() {
@@ -27,36 +25,49 @@ export default async function ProtectedPage() {
           user
         </div>
       </section>
-      <section className="p-3 sm:px-8 flex flex-col gap-4 items-start">
-        <h2 className="font-bold text-2xl">Your user details</h2>
-        <pre className="text-xs font-mono p-3 rounded border max-h-32 overflow-auto">
-          {JSON.stringify(user, null, 2)}
-        </pre>
-      </section>
-      <section className="flex mx-auto gap-4 flex-col lg:flex-row">
-        <div className="p-2 border-2">
-          <div className="flex flex-col min-w-sm max-w-2xl border rounded-lg shadow-lg p-4">
-            <div className="flex items-center gap-4 pb-4">
-              <CheckCircleIcon className="size-8 text-gray-500 dark:text-gray-400" />
-              <h1 className="font-semibold text-2xl">Todos</h1>
+
+      {/* <section className="p-2 max-w-2xl">
+            <div className="flex flex-col border rounded-lg shadow-lg p-4 gap-4">
+              <h2 className="font-bold text-2xl">Your user details</h2>
+              <pre className="text-xs font-mono p-3 rounded border max-h-32 overflow-auto">
+                {JSON.stringify(user, null, 2)}
+              </pre>
             </div>
-            <Todos />
-            <ClearActions />
-          </div>
-        </div>
-        <div className="p-2 border-2">
-          <div className="flex flex-col max-w-2xl border rounded-lg shadow-lg p-4">
-            <div className="flex items-center gap-4 pb-4">
-              <CheckCircleIcon className="size-8 text-gray-500 dark:text-gray-400" />
-              <h1 className="font-semibold text-2xl">Notes</h1>
+          </section> */}
+
+      <div className="flex flex-col lg:flex-row mx-auto gap-4">
+        <div className="flex flex-col sm:min-w-96">
+          <section className="p-2 max-w-2xl">
+            <div className="flex flex-col border rounded-lg shadow-lg p-4">
+              <div className="flex items-center gap-4 pb-4">
+                <Files className="size-8 text-gray-500 dark:text-gray-400" />
+                <h1 className="font-semibold text-2xl">Notes</h1>
+              </div>
+              <NoteList />
             </div>
-            <Notes />
-          </div>
+          </section>
+          <section className="p-2 max-w-2xl">
+            <div className="flex flex-col border rounded-lg shadow-lg p-4">
+              <div className="flex items-center gap-4 pb-4">
+                <List className="size-8 text-gray-500 dark:text-gray-400" />
+                <h1 className="font-semibold text-2xl">To-Do List</h1>
+              </div>
+              <TodoList />
+            </div>
+          </section>
         </div>
-      </section>
-      <section className="flex mx-auto p-4 md:p-6 lg:p-8">
-        <CalendarView />
-      </section>
+        <div className="flex flex-1">
+          <section className="p-2 max-w-4xl">
+            <div className="flex flex-col border rounded-lg shadow-lg p-4">
+              <div className="flex items-center gap-4 pb-4">
+                <Calendar className="size-8 text-gray-500 dark:text-gray-400" />
+                <h1 className="font-semibold text-2xl">Calendar</h1>
+              </div>
+              <CalendarView />
+            </div>
+          </section>
+        </div>
+      </div>
     </div>
   );
 }

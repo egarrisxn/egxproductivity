@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { addNote } from "@/actions/notes/actions";
+import { addNote } from "@/app/actions";
 import PlusIcon from "@/components/icons/plus";
 
 export default function AddNote() {

@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { addTodo } from "@/actions/todos/actions";
+import { addTodo } from "@/app/actions";
 import PlusIcon from "@/components/icons/plus";
 
 export default function AddTodo() {

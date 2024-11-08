@@ -2,7 +2,7 @@ import { createClient } from "@/utils/supabase/server";
 import Note from "./note";
 import AddNote from "./add-note";
 
-export default async function Notes() {
+export default async function NoteList() {
   const supabase = await createClient();
 
   const { data: notes, error } = await supabase.from("notes").select("*");

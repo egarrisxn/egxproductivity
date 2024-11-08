@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { deleteNote } from "@/actions/notes/actions";
+import { deleteNote } from "@/app/actions";
 
 export default function DeleteNote({ id }: { id: number }) {
   return (

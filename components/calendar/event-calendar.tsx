@@ -17,7 +17,7 @@ import { EventForm } from "./event-form";
 import { EventList } from "./event-list";
 import type { Event } from "@/lib/interface";
 
-export default function CalendarView() {
+export default function EventCalendar() {
   const [date, setDate] = useState<Date>(new Date());
   const [events, setEvents] = useState<Event[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -72,7 +72,7 @@ export default function CalendarView() {
             mode="single"
             selected={date}
             onSelect={(newDate) => newDate && setDate(newDate)}
-            className="x"
+            className="rounded-md border"
           />
         </Card>
 

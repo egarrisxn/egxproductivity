@@ -1,8 +1,9 @@
 import { createClient } from "@/utils/supabase/server";
 import Todo from "./todo";
 import AddTodo from "./add-todo";
+import ClearActions from "@/components/todos/clear-actions";
 
-export default async function Todos() {
+export default async function TodoList() {
   const supabase = await createClient();
 
   const { data: todos, error } = await supabase.from("todos").select("*");
@@ -32,6 +33,7 @@ export default async function Todos() {
             })}
         <AddTodo />
       </div>
+      <ClearActions />
     </div>
   );
 }

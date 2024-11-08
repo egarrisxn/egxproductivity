@@ -1,7 +1,7 @@
 import NoteData from "./note-data";
 import DeleteNote from "./delete-note";
-import { editNote } from "@/actions/notes/actions";
-import type { Note } from "@/lib/interface.ts";
+import { editNote } from "@/app/actions";
+import type { Note } from "@/lib/interface";
 
 export default async function Note({ note }: { note: Note }) {
   return (

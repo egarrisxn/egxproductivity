@@ -15,13 +15,13 @@ function Calendar({
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
-      className={cn("p-3", className)}
+      className={cn("x", className)}
       classNames={{
-        months: "flex flex-col space-y-4 ",
-        month: "space-y-4 flex flex-col ",
-        caption: "flex justify-center pt-1 relative items-center",
-        caption_label: "text-sm pl-2 font-medium",
-        nav: "space-x-4 pl-1 flex items-center",
+        months: "flex flex-col gap-4 p-4",
+        month: "flex flex-col gap-4",
+        caption: "pt-1",
+        caption_label: "text-sm font-medium",
+        nav: "flex flex-row gap-4",
         nav_button:
           "h-7 w-7 bg-transparent border border-input bg-background hover:bg-accent hover:text-accent-foreground p-0 opacity-50 hover:opacity-100 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
         nav_button_previous: "absolute left-1",
@@ -32,7 +32,7 @@ function Calendar({
           "text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]",
         row: "flex w-full mt-2",
         cell: "h-9 w-9 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-        day: "h-9 w-9 pl-4 font-normal aria-selected:opacity-100 rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground",
+        day: "h-9 w-9 font-normal text-center aria-selected:opacity-100 rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground",
         day_range_end: "day-range-end",
         day_selected:
           "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",

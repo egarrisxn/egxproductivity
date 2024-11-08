@@ -1,8 +1,8 @@
 import TodoData from "./todo-data";
 import TodoCheckbox from "./todo-checkbox";
 import DeleteTodo from "./delete-todo";
-import { editTodo } from "@/actions/todos/actions";
-import type { Todo } from "@/lib/interface.ts";
+import { editTodo } from "@/app/actions";
+import type { Todo } from "@/lib/interface";
 
 export default async function Todo({ todo }: { todo: Todo }) {
   return (

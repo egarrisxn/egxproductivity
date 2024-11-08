@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { deleteTodo } from "@/actions/todos/actions";
+import { deleteTodo } from "@/app/actions";
 
 export default function DeleteTodo({ id }: { id: number }) {
   return (

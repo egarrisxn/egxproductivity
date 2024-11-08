@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { editNote } from "@/actions/notes/actions";
+import { editNote } from "@/app/actions";
 import { Input } from "@/components/ui/input";
 import type { Note } from "@/lib/interface";
 

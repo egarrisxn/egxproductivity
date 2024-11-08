@@ -1,7 +1,14 @@
 "use client";
 import { Checkbox } from "@/components/ui/checkbox";
-import { onCheckChange } from "@/actions/todos/actions";
-import type { Todo } from "@/lib/interface";
+import { onCheckChange } from "@/app/actions";
+
+interface Todo {
+  id: number;
+  user_id: string;
+  task: string;
+  is_complete: boolean;
+  inserted_at: Date;
+}
 
 export default function TodoCheckbox({ todo }: { todo: Todo }) {
   return (
